@@ -1,0 +1,17 @@
+﻿__pycache__/
+*.pyc
+*.mph
+node_modules/
+*.lic
+*SSQ*
+.vscode/
+.idea/
+Git/
+OpenCode/
+PyCharm*/
+corepack*
+node*
+npm*
+npx*
+skills/
+install_tools.bat
