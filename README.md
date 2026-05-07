@@ -1,6 +1,6 @@
 # ⚡ AI-COMSOL
 *Built for fun. Will update in spare time.* ⚡
-*闲暇之作，有空更新。* ⚡
+*娱乐之作，有空更新。* ⚡
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)](https://python.org)
 [![COMSOL](https://img.shields.io/badge/COMSOL-6.4-orange)](https://comsol.com)
