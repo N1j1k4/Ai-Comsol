@@ -45,8 +45,7 @@ Copy-Item -Recurse Ai-Comsol\skill\ai-comsol $env:USERPROFILE\.agents\skills\ai-
 | Prompt | Result |
 |--------|--------|
 | "Parallel plate capacitor, 5cm gap, ±1000V" | V/E field distribution + verification |
-| "Silicon cantilever 2cm×0.1cm, 1kN/m² load" | Displacement + stress |
-| "Electrostatic actuator, 200μm gap, 100V" | Coupled electro-mechanical |
+
 
 ## 🛠️ Architecture
 
@@ -90,8 +89,7 @@ Copy-Item -Recurse Ai-Comsol\skill\ai-comsol $env:USERPROFILE\.agents\skills\ai-
 | 描述 | 输出 |
 |------|------|
 | "平行板电容器，间隙 5cm，±1000V" | 电压/电场分布 + 自动验证 |
-| "硅悬臂梁 2cm×0.1cm，1kN/m² 载荷" | 位移 + 应力 |
-| "静电驱动器，间隙 200μm，偏压 100V" | 力电耦合位移 |
+
 
 ## 🛠️ 架构
 
@@ -126,4 +124,16 @@ Ai-Comsol/
 | OpenCode | latest |
 
 ---
+## ⚠️ Disclaimer / 免责声明
 
+- COMSOL Multiphysics® is a registered trademark of COMSOL AB. This project is **not** affiliated with, endorsed by, or sponsored by COMSOL AB.
+- This project does **not** modify, decompile, or redistribute any COMSOL binaries or libraries. It requires a legally licensed copy of COMSOL to function.
+- All simulation results should be independently verified. The authors assume no liability for any errors or damages arising from the use of this tool.
+- This project is intended for educational and research purposes only.
+
+---
+
+- COMSOL Multiphysics® 是 COMSOL AB 的注册商标。本项目**与 COMSOL AB 无关**，未获其认可或赞助。
+- 本项目**未**修改、反编译或再分发 COMSOL 的任何二进制文件或库。运行需要合法授权的 COMSOL 许可证。
+- 所有仿真结果应独立验证。作者对因使用本工具产生的任何错误或损失不承担责任。
+- 本项目仅供学习和研究用途。
