@@ -45,12 +45,18 @@ Copy-Item -Recurse Ai-Comsol\skill\ai-comsol $env:USERPROFILE\.agents\skills\ai-
 | Prompt | Result |
 |--------|--------|
 | "Parallel plate capacitor, 5cm gap, ±1000V" | V/E field distribution + verification |
-
+| Cantilever beam | 3D Solid | ω_max = -1.58×10⁻⁴ m (theory: -1.60×10⁻⁴) | 1.23% |
+| Permanent magnet | 3D MF | B field distribution OK | PASS |
+| Steel plate impact | 3D Transient | ω_max = 3.37×10⁻⁴ m, t_peak = 40 μs | PASS |
 
 ## 🛠️ Architecture
 
 ```
-Prompt → OpenCode (ai-comsol skill) → Python mph → COMSOL 6.4 → Results
+User prompt → OpenCode (ai-comsol skill)
+  → comsol_client.py: auto-starts COMSOL mph server
+  → mph.Client() connects to COMSOL 6.4
+  → run.py: geometry → materials → physics → mesh → solve → export
+  → output: .mph / .txt / .png / verification_report.md
 ```
 
 ---
@@ -89,12 +95,19 @@ Copy-Item -Recurse Ai-Comsol\skill\ai-comsol $env:USERPROFILE\.agents\skills\ai-
 | 描述 | 输出 |
 |------|------|
 | "平行板电容器，间隙 5cm，±1000V" | 电压/电场分布 + 自动验证 |
+| 悬臂梁 | 3D 固体力学 | ω_max = -1.58×10⁻⁴ m（理论 -1.60×10⁻⁴） | 1.23% |
+| 永磁体磁场 | 3D 磁场 | B 场分布 OK | PASS |
+| 钢板冲击 | 3D 瞬态结构 | ω_max = 3.37×10⁻⁴ m, t_peak = 40 μs | PASS |
 
 
 ## 🛠️ 架构
 
 ```
-自然语言 → OpenCode (ai-comsol 技能) → Python mph → COMSOL 6.4 → 结果输出
+用户指令 → OpenCode (ai-comsol 技能)
+  → comsol_client.py: 自动启动 COMSOL mph server
+  → mph.Client() 连接 COMSOL 6.4
+  → run.py: 几何 → 材料 → 物理场 → 网格 → 求解 → 导出
+  → 输出: .mph / .txt / .png / verification_report.md
 ```
 
 ---
@@ -104,13 +117,21 @@ Copy-Item -Recurse Ai-Comsol\skill\ai-comsol $env:USERPROFILE\.agents\skills\ai-
 ```
 Ai-Comsol/
 ├── skill/ai-comsol/
-│   ├── SKILL.md                     # Agent skill definition / 技能定义
+│   ├── SKILL.md                          # Agent skill definition / 技能定义
+│   ├── PROJECT_STATUS.md                 # Cross-session handoff / 跨会话交接
 │   ├── references/
-│   │   ├── comsol-api.md            # mph API quick reference / API 速查
-│   │   └── verification.md          # Self-verification guide / 自验收指南
-│   └── scripts/
-│       └── template_2d_es.py        # Parallel-plate capacitor template / 模板
-├── comsol_mcp_server.py             # (Legacy) MCP subprocess server / 旧版
+│   │   ├── comsol-api.md                 # mph API reference (with 2D plotting) / API 速查
+│   │   └── verification.md               # Self-verification guide / 自验收指南
+│   ├── scripts/
+│   │   ├── comsol_client.py              # Auto-start COMSOL server / 自动启动服务
+│   │   └── template_2d_es.py             # 2D electrostatic template / 模板
+│   ├── examples/
+│   │   ├── CASE_GUIDELINES.md            # Case structure guidelines / 案例规范
+│   │   ├── electrostatics_2d_parallel_plate/   # ±1000V capacitor
+│   │   ├── solid_mechanics_cantilever/      # 3D beam bending
+│   │   ├── permanent_magnet_air/            # NdFeB B-field
+│   │   └── plate_projectile_impact/         # Transient impact
+│   └── (4 cases × run.py + README.md + PROMPT_NOTES.md)
 └── README.md
 ```
 
